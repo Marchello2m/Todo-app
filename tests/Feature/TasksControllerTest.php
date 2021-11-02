@@ -33,15 +33,25 @@ class TasksControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('tasks.create');
     }
-    public function test_can_we_visit_form():void
+    public function test_can_we_visit_tasks():void
     {
         /**@var  Authenticatable $user */
         $user= User::factory()->make();
         $this->actingAs($user);
 
-        $response=$this->get(route('task.edit'));
+        $response = $this->get('/tasks');
+
         $response->assertStatus(200);
-        $response->assertViewIs('task.edit');
+    }
+    public function test_can_we_visit_edit():void
+    {
+        /**@var  Authenticatable $user */
+        $user= User::factory()->make();
+        $this->actingAs($user);
+
+        $response = $this->get('/dashboard');
+
+        $response->assertStatus(200);
     }
 
     public function testTaskReturnsTrue()

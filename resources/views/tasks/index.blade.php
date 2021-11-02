@@ -1,5 +1,7 @@
+
 <x-app-layout>
     <x-slot name="header">
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Tasks') }}
         </h2>
@@ -18,12 +20,11 @@
                         <ul>
                             <li style="padding-bottom: 40px">
 
-
                                 @if ($task->status === 1)
-                                    <form class="2xl:bg-green-300">
-                                        <form class="2xl:bg-red-600"><p class="mb-2 mx-16 rounded-full py-1 px-24 "><a
-                                                    class="font-bold"> Status: </a> Done!
-                                            <h1 class="mb-2 mx-16 rounded-full py-1 px-24 font-bold">
+                                    <form class="2xl:bg-green-300  "  style=" text-decoration: line-through">
+                                        <form class="2xl:bg-red-600 "><p class="mb-2 mx-16 rounded-full py-1 px-24 "><a
+                                                    class="font-bold "> Status: </a> Done!
+                                            <h1 class="mb-2 mx-16 rounded-full py-1 px-24 font-bold "  >
                                                 Title: {{$task->title}}</h1>
 
 
@@ -113,10 +114,14 @@
                         </ul>
 
 
+
+
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
+
+
 </x-app-layout>
 
