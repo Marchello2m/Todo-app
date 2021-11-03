@@ -18,17 +18,6 @@
             1 Personal,2 Hobby,3for work
         </div>
 
-        <div class="row">
-            <div class="form-check izquierda" >
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="status" {{ $task->status ? 'checked=checked' : '' }}>
-                    <span class="form-check-sign" >
-                <span class="check"></span>
-            </span>
-                    <label for="">Done</label>
-                </label>
-            </div>
-        </div>
 
         <div class="mb-4">
             <button
