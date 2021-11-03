@@ -18,22 +18,14 @@
             1 Personal,2 Hobby,3for work
         </div>
 
-        <div class="row">
-            <div class="form-check izquierda" >
-                <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="status" {{ $task->status ? 'checked=checked' : '' }}>
-                    <span class="form-check-sign" >
-                <span class="check"></span>
-            </span>
-                    <label for="">Done</label>
-                </label>
-            </div>
-        </div>
 
-        <div class="mb-4">
+        <div class="mb-4" >
             <button
-                class="mb-2 mx-16 rounded-full py-1 px-24 bg-gradient-to-r from-green-400 to-blue-500 ">
-                {{$task === null ? 'Create' : 'Save'}}
+                class="mb-2 mx-16 rounded-full py-1 px-24 bg-gradient-to-r from-green-400 to-blue-500 "   >
+                {{$task === null ? 'Create' : 'Save' }}
+
+
             </button>
+            <a href="{{ route('tasks.index')}}" class="mb-2 mx-16 rounded-full py-1 px-24 bg-gradient-to-r from-green-400 to-blue-500 ">Back</a>
         </div>
     </div>

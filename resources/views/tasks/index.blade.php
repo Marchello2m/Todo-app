@@ -1,127 +1,77 @@
-
 <x-app-layout>
-    <x-slot name="header">
-
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <x-slot name="header" class="bg-dark">
+<div  class="text-center xl:text-xl text-white bg-dark">
+        <h2>
             {{ __('Tasks') }}
         </h2>
+</div>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <a class="mb-2 mx-16 rounded-full py-1 px-24 bg-gradient-to-r from-green-300 to-blue-500"
+<br class="bg-dark">
+<div class="bg-dark" >
+<div>
+                    <a class="mb-2 mx-16 rounded-full py-1 px-24 btn-success"
                        href="{{route('tasks.create')}}">Create new task</a>
-                    <br>
-                    <br>
-
+</div>
+<br>
                     @foreach($tasks as $task)
-                        <ul>
-                            <li style="padding-bottom: 40px">
-
-                                @if ($task->status === 1)
-                                    <form class="2xl:bg-green-300  "  style=" text-decoration: line-through">
-                                        <form class="2xl:bg-red-600 "><p class="mb-2 mx-16 rounded-full py-1 px-24 "><a
-                                                    class="font-bold "> Status: </a> Done!
-                                            <h1 class="mb-2 mx-16 rounded-full py-1 px-24 font-bold "  >
-                                                Title: {{$task->title}}</h1>
-
-
-                                            <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                <a class="font-bold">ToDo:</a> {{$task->content}}
-                                            </p>
-                                            <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                <a class="font-bold">Category id: </a> {{$task->category_id}}
-                                            </p>
-                                            <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                <a class="font-bold"> Category: </a> {{$task->category->name}}
-                                            </p>
-
-                                            <br>
-
-
-                                            <br>
-
-                                        </form>
-                                        @elseif ($task->status === 0)
-                                            <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-
-                                            <form class="2xl:bg-red-600"><p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                    <a class="font-bold"> Status: </a> Still need to do!
-
-                                                <h1 class="mb-2 mx-16 rounded-full py-1 px-24 font-bold">
-                                                    Title: {{$task->title}}</h1>
-
-
-                                                <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                    <a class="font-bold">ToDo:</a> {{$task->content}}
-                                                </p>
-                                                <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                    <a class="font-bold">Category id: </a> {{$task->category_id}}
-                                                </p>
-                                                <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                    <a class="font-bold"> Category: </a> {{$task->category->name}}
-                                                </p>
-
-                                                <br>
-
-
-                                                <br>
-
-                                            </form>
-                                        @else ($task->status ===' ')
-                                            <form class="2xl:bg-red-600"><p
-                                                    class="mb-2 mx-16 rounded-full py-1 px-24 "><a class="font-bold">
-                                                        Status: </a>Still Need To Do!
-
-                                                <h1 class="mb-2 mx-16 rounded-full py-1 px-24 font-bold">
-                                                    Title: {{$task->title}}</h1>
-
-
-                                                <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                    <a class="font-bold">ToDo:</a> {{$task->content}}
-                                                </p>
-                                                <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                    <a class="font-bold">Category id: </a> {{$task->category_id}}
-                                                </p>
-                                                <p class="mb-2 mx-16 rounded-full py-1 px-24 ">
-                                                    <a class="font-bold"> Category: </a> {{$task->category->name}}
-                                                </p>
-
-                                                <br>
-
-                                                <br>
-                                            </form>
-
-
-                                            @endif
-
-                                            <p>
-                                                <a class="mb-2 mx-16 rounded-full py-1 px-24 bg-gradient-to-r from-green-400 to-blue-500" href="{{route('tasks.edit',$task)}}">Edit</a>
-                                        <form  method="post" action="{{route('tasks.destroy',$task)}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="mb-2 mx-16 rounded-full py-1 px-24 bg-gradient-to-r from-green-400 to-blue-500" type="submit"onclick="confirm('Are you sure?')">Delete</button>
-                                        </form>
 
 
 
-                                    </form>
-                                    <br>
-                                    </p>
-                            </li>
-                        </ul>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+
+            <th scope="col">ToDo.Nr</th>
+            <th scope="col">Title</th>
+            <th scope="col">ToDo</th>
+            <th scope="col">Category</th>
+            <th scope="col">Created at</th>
+            <th scope="col">Completed at</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+                <th scope="row">{{$task->id}}</th>
+                <td>        @if($task->completed_at) <s> @endif{{$task->title}}   @if($task->completed_at) </s> @endif </td>
+                <td>@if($task->completed_at) <s> @endif {{$task->content}}  @if($task->completed_at) </s> @endif </td>
+                <td>@if($task->completed_at) <s> @endif{{$task->category->name}}  @if($task->completed_at) </s> @endif </td>
+                <td>@if($task->completed_at) <s> @endif{{$task->created_at}}  @if($task->completed_at) </s> @endif </td>
+                <td> @if($task->completed_at) <s> @endif{{$task->completed_at}}  @if($task->completed_at) </s> @endif </td>
+
+            <td>  @if($task->completed_at)
+                    <form method="post" action="{{route('tasks.unComplete',$task)}}">
+                        @csrf
+                        <button class="btn btn-outline-warning" type="submit" onclick="return confirm('Are you sure?')" >UnComplete</button>
+                    </form>      @endif</td>
+
+            <td><a class="btn btn-outline-success"
+                   href="{{route('tasks.edit',$task)}}">Edit</a></td>
+            <td>  @if(!$task->completed_at)
+                    <form method="post" action="{{route('tasks.complete',$task)}}">
+                        @csrf
+                        <button class="btn btn-outline-success" type="submit" onclick="return confirm('Are you sure?')">Complete
+                        </button>
+                    </form>
+                @endif</td>
+            <td>
+                <form method="post" action="{{route('tasks.destroy',$task)}}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-outline-danger"
+                        type="submit" onclick="return confirm('Are you sure?')">Delete
+                    </button>
+                </form>
+            </td>
 
 
+        </tr>
 
 
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+        </tbody>
+    </table>
+    @endforeach
+</div>
 </x-app-layout>
 
