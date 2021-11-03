@@ -18,8 +18,10 @@ class CreateTasksTable extends Migration
             $table->foreignId('category_id');
             $table->string('title');
             $table->string('content');
-            $table->string('status');
+
             $table->timestamps();
+
+
         });
     }
 
