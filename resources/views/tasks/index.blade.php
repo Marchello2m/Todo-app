@@ -11,9 +11,6 @@
 <div>
                     <a class="mb-2 mx-16 rounded-full py-1 px-24 btn-success"
                        href="{{route('tasks.create')}}">Create new task</a>
-</div>
-<br>
-                    @foreach($tasks as $task)
 
 
 
