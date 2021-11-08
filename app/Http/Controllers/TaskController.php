@@ -18,6 +18,20 @@ class TaskController extends Controller
 
         return view('tasks.index', ['tasks' => $tasks]);
     }
+    public function dumpster(Request $request)
+    {
+        $tasks = Task::all();
+        if($request->has('dumpster'))
+        {
+            $tasks =Task::onlyTrashed()->get();
+        }
+
+        return view('dumpster', compact('tasks'), ['tasks' => $tasks]);
+        // return view('dumpster', ['tasks' => $tasks]);
+    }
+
+
+
 
     public function create()
     {
@@ -84,8 +98,14 @@ class TaskController extends Controller
             'completed_at' => null
         ]);
 
-
         return redirect()->back();
+    }
+
+    ////force delete prieks dumpster lapas
+    public function ultimateDelete(Task $task)
+    {
+        $task->forceDelete();
+        return redirect()->route('tasks.index');
     }
 
 

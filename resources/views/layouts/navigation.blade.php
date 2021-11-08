@@ -5,7 +5,10 @@
             <div class="flex">
                 <!-- Logo -->
 
+
+
                 <div class="flex-shrink-0 flex items-center">
+
 
 
                     <a href="{{ route('dashboard') }}">
@@ -25,8 +28,13 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-white">
+
+                    <x-nav-link     href="dumpster">
+                    {{ __('Dumpster') }}
+
                     <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')" >
                         The current UNIX timestamp is {{{ time() }}}.
+
                     </x-nav-link>
                 </div>
             </div>

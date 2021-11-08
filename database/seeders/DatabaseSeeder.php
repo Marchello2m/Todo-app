@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('codelex')
         ])->each(function(User $user){
          Task::factory(10)->create([
-             'user_id'=>$user->id
+             'user_id'=>$user->id=1
          ]);
         });
     }

@@ -15,7 +15,7 @@ class TaskFactory extends Factory
            'title'=>$this->faker->sentence,
             'content'=>$this->faker->text,
             'completed_at'=>null,
-            'category_id'=>1
+            'category_id'=>rand(1,3)
         ];
     }
 }
