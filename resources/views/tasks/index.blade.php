@@ -2,18 +2,30 @@
     <x-slot name="header" class="bg-dark">
 <div  class="text-center xl:text-xl text-white bg-dark">
 
+
         <h2 class="text-center xl:text-xl text-white bg-dark">
+
+        <h2>
+
             {{ __('Tasks') }}
         </h2>
 </div>
     </x-slot>
 
+<br class="bg-dark">
+
 <div class="bg-dark" >
 <div>
                     <a class="mb-2 mx-16 rounded-full py-1 px-24 btn-success"
                        href="{{route('tasks.create')}}">Create new task</a>
+
 </div>
 <br>
+
+
+
+
+
 
 
 
@@ -32,12 +44,15 @@
         </tr>
         </thead>
         <tbody>
+
         @foreach($tasks as $task)
+
         <tr>
 
                 <th scope="row">{{$task->id}}</th>
                 <td>        @if($task->completed_at) <s> @endif{{$task->title}}   @if($task->completed_at) </s> @endif </td>
                 <td>@if($task->completed_at) <s> @endif {{$task->content}}  @if($task->completed_at) </s> @endif </td>
+
             <td>@if($task->completed_at) <s> @endif{{$task->category->name}}  @if($task->completed_at) </s> @endif </td>
                 <td>@if($task->completed_at) <s> @endif{{$task->created_at}}  @if($task->completed_at) </s> @endif </td>
                 <td> @if($task->completed_at) <s> @endif{{$task->completed_at}}  @if($task->completed_at) </s> @endif </td>
@@ -48,6 +63,16 @@
                     <form method="post" action="{{route('tasks.unComplete',$task)}}">
                         @csrf
                      UnDone   <button type="checkbox" type="submit" onclick="return confirm('Are you sure?')" ></button>
+
+                <td>@if($task->completed_at) <s> @endif{{$task->category->name}}  @if($task->completed_at) </s> @endif </td>
+                <td>@if($task->completed_at) <s> @endif{{$task->created_at}}  @if($task->completed_at) </s> @endif </td>
+                <td> @if($task->completed_at) <s> @endif{{$task->completed_at}}  @if($task->completed_at) </s> @endif </td>
+
+            <td>  @if($task->completed_at)
+                    <form method="post" action="{{route('tasks.unComplete',$task)}}">
+                        @csrf
+                        <button class="btn btn-outline-warning" type="submit" onclick="return confirm('Are you sure?')" >UnComplete</button>
+
                     </form>      @endif</td>
 
             <td><a class="btn btn-outline-success"
@@ -55,9 +80,14 @@
             <td>  @if(!$task->completed_at)
                     <form method="post" action="{{route('tasks.complete',$task)}}">
                         @csrf
+
                         Done!
                         <button    type="checkbox" class="btn btn-outline-success" type="submit" onclick="return confirm('Are you sure?')">
 
+                        </button>
+
+
+                        <button class="btn btn-outline-success" type="submit" onclick="return confirm('Are you sure?')">Complete
                         </button>
 
                     </form>
@@ -78,6 +108,12 @@
         @endforeach
         </tbody>
     </table>
+
+
+
+        </tbody>
+    </table>
+    @endforeach
 
 </div>
 </x-app-layout>
